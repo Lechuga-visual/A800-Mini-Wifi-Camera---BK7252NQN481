@@ -160,6 +160,7 @@ with tempfile.TemporaryDirectory() as temporary:
         assert response[0]==200,response[0]
         new_cookie=response[1]['Set-Cookie'].split(';')[0]
         assert server.request('/status',cookie=cookie)[0]==401
+        assert server.request('/status',credential=('admin','admin'),cookie=new_cookie)[0]==200
         assert json.loads(server.request('/status',cookie=new_cookie)[2])['security_configured'] is True
         assert server.request('/status',credential=('admin','admin'))[0]==401
         assert server.request('/status',credential=('ha','viewer-test-123456'))[0]==403

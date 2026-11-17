@@ -86,6 +86,7 @@ int main(void){
  raw_request("GET /snapshot.jpg HTTP/1.1\r\nHost: test\r\n\r\n");status("401 Unauthorized");status("WWW-Authenticate: Basic");
  raw_request("GET /status HTTP/1.1\r\nHost: test\r\nAuthorization: Basic VIEWER\r\n\r\n");status("403 Forbidden");
  raw_request("GET /status HTTP/1.1\r\nHost: test\r\nCookie: a800_session=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\r\n\r\n");status("200 OK");length_ok();
+ raw_request("GET /status HTTP/1.1\r\nHost: test\r\nAuthorization: Basic OLD\r\nCookie: a800_session=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\r\n\r\n");status("200 OK");
  raw_request("GET /status HTTP/1.1\r\nHost: test\r\nCookie: a800_session=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa; a800_session=bad\r\n\r\n");status("401 Unauthorized");
  request("POST /login HTTP/1.1\r\nOrigin: https://test\r\n\r\n");status("200 OK");status("Secure; HttpOnly; SameSite=Strict");length_ok();
  request("POST /logout HTTP/1.1\r\nOrigin: https://test\r\n\r\n");status("200 OK");status("Max-Age=0");

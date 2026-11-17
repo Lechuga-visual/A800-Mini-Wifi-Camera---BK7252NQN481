@@ -303,10 +303,14 @@ static int serve_client(int fd)
         const char *value=header_value(request,"Authorization",&length);
         int setup_interface=localcam_is_setup_interface(fd);
         role=0;
-        if(header_count(request,"Authorization")==1)role=localcam_auth_role(value,length);
-        else if(!header_count(request,"Authorization") && header_count(request,"Cookie")==1){
-            value=header_value(request,"Cookie",&length);
-            role=cookie_role(value,length,setup_interface);
+        if(header_count(request,"Authorization")<=1 && header_count(request,"Cookie")<=1){
+            /* Upgraded browsers may still send cached Basic credentials from 0.1. */
+            if(strcmp(target,"/login") && header_count(request,"Cookie")==1){
+                unsigned cookie_length=0;
+                const char *cookie=header_value(request,"Cookie",&cookie_length);
+                role=cookie_role(cookie,cookie_length,setup_interface);
+            }
+            if(!role && header_count(request,"Authorization")==1)role=localcam_auth_role(value,length);
         }
         if(!localcam_security_configured() && !setup_interface)role=0;
         if(!role){
