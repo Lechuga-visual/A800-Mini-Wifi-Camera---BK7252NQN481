@@ -4,7 +4,6 @@ Firmware autónomo con HTTPS y MJPEG para una mini cámara BK7252N. Sin PC inter
 
 [English](README.md) · [Compilar y flashear](docs/BUILD.es.md) · [Home Assistant](docs/HOME_ASSISTANT.es.md) · [Seguridad](SECURITY.md)
 
-<img src="docs/images/board-back.jpg" alt="Placa A800 probada, con BK7252N y pads UART" width="460">
 
 ## Estado
 
@@ -21,6 +20,15 @@ Este código 0.2 añade identidad generada en el primer arranque, cambio de cont
 | Flash | 2 MiB, JEDEC `EB6015` |
 | PCB / flex | `AKS1N-V2.0` / `XLT-A9-0310-V1.3` |
 | Firmware original usado para extraer la tabla | `3.00.21.01_251030` |
+
+<details>
+<summary>Fotos de la placa probada</summary>
+
+<img src="docs/images/board-back.jpg" alt="Placa A800 probada, con BK7252N y pads UART" width="460">
+
+<img src="docs/images/board-front.jpg" alt="GC0312 sensor side of the tested board" width="480">
+
+</details>
 
 ## Qué hace
 

@@ -4,7 +4,6 @@ Standalone HTTPS and MJPEG firmware for a BK7252N mini camera. No PC relay. No L
 
 [Español](README.es.md) · [Build and flash](docs/BUILD.md) · [Home Assistant](docs/HOME_ASSISTANT.md) · [Security](SECURITY.md)
 
-<img src="docs/images/board-back.jpg" alt="Tested A800 board, showing BK7252N and UART pads" width="460">
 
 ## Status
 
@@ -21,6 +20,15 @@ This 0.2 source adds on-device first-boot identity, password settings and an ES/
 | Flash | 2 MiB, JEDEC `EB6015` |
 | PCB / flex | `AKS1N-V2.0` / `XLT-A9-0310-V1.3` |
 | Factory image used for extraction | `3.00.21.01_251030` |
+
+<details>
+<summary>Tested board photos</summary>
+
+<img src="docs/images/board-back.jpg" alt="Tested A800 board, showing BK7252N and UART pads" width="460">
+
+<img src="docs/images/board-front.jpg" alt="GC0312 sensor side of the tested board" width="480">
+
+</details>
 
 ## What it does
 
