@@ -1,0 +1,20 @@
+{
+  "sdk": {
+    "url": "https://github.com/NonPIayerCharacter/beken_freertos_sdk.git",
+    "commit": "dfc18287f650ccfa94e399f33fc18fa3ac6a9d19"
+  },
+  "toolchain": {
+    "url": "https://github.com/openshwprojects/OpenBK7231N.git",
+    "commit": "a24675411ad4e20e476686184bbd0a77b5ab9803"
+  },
+  "mbedtls": {
+    "version": "3.6.8",
+    "url": "https://github.com/Mbed-TLS/mbedtls/releases/download/mbedtls-3.6.8/mbedtls-3.6.8.tar.bz2",
+    "sha256": "bc54b818e87f49c0b3281dd85d24adaede0e63b4e822e3fbd49c005a38b9595b"
+  },
+  "w64devkit": {
+    "version": "2.11.0",
+    "url": "https://github.com/skeeto/w64devkit/releases/download/v2.11.0/w64devkit-x64-2.11.0.7z.exe",
+    "sha256": "54c2bb9962e8a30c8270e34c5efc3d5fee579f53087fa7d435b95fbba2af7b2b"
+  }
+}

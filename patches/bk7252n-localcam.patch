@@ -1,0 +1,49 @@
+diff --git a/application.mk b/application.mk
+index 09ea9f3..93d9bc0 100644
+--- a/application.mk
++++ b/application.mk
+@@ -169,6 +169,9 @@ DRAM_C =
+ SRC_OS =
+ SRC_S =
+ APP_C =
++SRC_C += ./localcam_tls_port.c ./localcam_security_store.c
++SRC_C += ./localcam.c ./localcam_wifi.c ./fixes/blank.c
++SRC_C += ./beken378/app/video_work/video_buffer.c
+ 
+ SRC_MBEDTLS_C =
+ SRC_DRV_C =
+@@ -503,7 +506,7 @@ CCFLAGS += -Wno-discarded-qualifiers
+ endif
+ 
+ 
+-CCFLAGS += -g0 -mthumb -mcpu=arm968e-s -march=armv5te -mthumb-interwork -mlittle-endian -Os -Wno-error=implicit-function-declaration -Wno-error=incompatible-pointer-types -Wno-error=return-mismatch -Wno-error=int-conversion -Wno-error=changes-meaning
++CCFLAGS += -g0 -mthumb -mcpu=arm968e-s -march=armv5te -mthumb-interwork -mlittle-endian -Os -Wno-error=implicit-function-declaration
+ CCFLAGS += -ffunction-sections -Wall -Wno-format -Wno-unknown-pragmas -fsigned-char -fdata-sections -nostdlib -fno-strict-aliasing
+ 
+ CXXFLAGS = -flto=auto $(CCFLAGS)
+@@ -612,6 +615,8 @@ MISC_LIB = ./libmisc.a
+ SRC_S_LIB = ./libsrc_s.a
+ 
+ LIBFLAGS = -lstdc++
++# LOCALCAM_MODERN_TLS
++LIBFLAGS += ../../build/tls/localcam_tls.o ../../build/tls/liblocalcam_tls.a
+ ifeq ($(CFG_SUPPORT_MATTER), 1)
+ LIBFLAGS += -L$(CHIP_LIB_PATH) -lMatterApp -lstdc++
+ endif
+@@ -670,6 +675,7 @@ else
+ 	$(Q)$(LD) $(LFLAGS) -o $(BIN_DIR)/$(SOC_NAME_BSP_ELF) -Wl,--start-group $(LIBFLAGS) -Wl,--end-group -T./build/$(SOC_BSP_LDS) -Xlinker -Map=$(BIN_DIR)/$(SOC_NAME_BSP_MAP)
+ endif
+ 	$(Q)$(OBJCOPY) -O binary $(BIN_DIR)/$(SOC_NAME_BSP_ELF) $(BIN_DIR)/$(SOC_NAME_BSP_BIN)
++ifneq ($(LOCALCAM_ONLY),1)
+ 	$(ENCRYPT) $(BIN_DIR)/$(SOC_NAME_BSP_BIN) $(ENCRYPT_ARGS)
+ 	$(Q)mv $(BIN_DIR)/bk7231_bsp.bin $(BIN_DIR)/bsp.bin
+ ifeq ($(CFG_SOC_NAME), 5)
+@@ -708,6 +714,8 @@ ifeq ($(CFG_SOC_NAME), 3)
+ 	$(Q)mv $(BIN_DIR)/bk7252_tuya_bsp_uart_$(FLASH_SIZE_TAG).1220.bin $(BIN_DIR)/$(CFG_SOC_NAME_STR)_Tuya_UA.bin
+ endif
+ 
++endif # LOCALCAM_ONLY
++
+ 
+ ifeq ("${CFG_SUPPORT_RTOS}", "4")
+ # -------------------------------------------------------------------	
